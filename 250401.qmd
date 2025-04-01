@@ -1,0 +1,63 @@
+---
+title: "notes"
+format: html
+editor: visual
+---
+
+## Bayesian Statistics 250401
+
+Why learn Bayesian stats?
+
+-   perfect tool for merging theory with data
+
+-   adept at handling hierarchical data/models
+
+    -   multiple sources of data
+
+    -   can handle missing data
+
+    -   good at dealing with derived quatities
+
+        -   example: building a matrix model for population growth, with fecundity etc and use lambda as a random effect
+
+    -   can generate clear probability statements to policy makers
+
+    -   requires clear thinking about probability, making for a better statistician
+
+-   important for reading and understanding the literature
+
+## Parts of a Bayesian Model
+
+### Posterior Distribution
+
+-   Where influences about parameters and functional relationships are made
+
+-   proportional to (a data model) x (a process model) x (a parameter model)\\
+
+    -   Data Model
+
+        -   Where we account for sampling or observational bias that creates noise in the data.
+
+        -   How does sampling or obervation introduce noise or bias
+
+            -   Example: Height of redwoods distribution
+
+                -   If not every tree is measured there's a potential skew in the normal distribution
+
+                    -   10 samples compared to 100 samples for instance
+
+    -   Process Model
+
+        -   How does our socioecological process of interest relate to covariates?
+
+        -   always includes a deterministic model
+
+    -   Parameter Model
+
+        -   Where we include prior information about the system
+
+            -   Example: age and redwood height from another study to inform our own questions about the same species in a different location
+
+```{r}
+
+```
