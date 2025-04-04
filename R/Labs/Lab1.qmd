@@ -1,0 +1,99 @@
+---
+title: "Lab1"
+format: html
+editor: visual
+---
+
+# Lab 1 - Deterministic Models and Probability I
+
+```{r}
+library(boot) # for inv.logit()
+```
+
+## II. Deterministic Models
+
+### Plotting Deterministic Models
+
+```{r}
+par(mfrow = c(2,2))
+
+# linear plot
+linear = function(B0, B1, x){  #pay close attention to the syntax of the function command.  The stuff in parantheses are the inputs ot the function
+  y = B0 + B1*x     #This is what the function does
+  return(y)        #These are the values that the function returns
+}
+x = -100:100; B0 = 2; B1 = 0.5
+y = linear(B0, B1, x)
+plot(x,y,type = 'l', main = "linear")
+
+# inv logit plot
+inverse = function(B0, B1, x){
+  y = inv.logit(B0 + B1*x)
+  return(y)        #These are the values that the function returns
+}
+x = -100:100; B0 = 2; B1 = 0.5
+y = inverse(B0, B1, x)
+plot(x,y,type = 'l', main = "Inverse Logit")
+
+# exponential plot
+exponential = function(B0, B1, x){
+  y = exp(B0 + B1*x)
+  return(y)        #These are the values that the function returns
+}
+x = -100:200; B0 = 2; B1 = 0.5
+y = exponential(B0, B1, x)
+plot(x,y,type = 'l', main = "Exponential")
+
+# aymptotic plot
+asymptotic = function(B0, B1, x){
+  y = (B0 * x)/(B0/2 + x)
+  return(y)        #These are the values that the function returns
+}
+x = -100:100; B0 = 2; B1 = 0.5
+y = asymptotic(B0, B1, x)
+plot(x,y,type = 'l', main = "Asymptotic")
+```
+
+### Examples for Each Model
+
+sociological or ecological
+
+#### Linear
+
+-   eco - tree growth and precipitation
+
+-   socio - lifespan and wealth
+
+#### Inverse Logit
+
+-   eco - Abundance of a competitive invasive species after the introduction to a new area
+
+-   eco - human growth rate, beacuse speeds way up at adolescence then slows down again
+
+#### Exponential
+
+-   eco - amount of carbon in the atmosphere and the greenhouse effect
+
+-   socio - compounding interest
+
+#### Asymptotic
+
+-   a black hole and the light entering
+
+-   eco - recovery of a formerly increasing species after a major stochastic event that nearly wiped them out
+
+## III. The chain rule of probability
+
+1\. Use the chain rule of probability to factor the joint distribution Pr(𝜃1,𝜃2,𝜃3,𝜃4)
+
+into a joint conditional distribution.
+
+Pr(𝜃1,𝜃2,𝜃3,𝜃4) = Pr(𝜃4\|𝜃3,𝜃2,𝜃1) \* Pr(𝜃3\|𝜃2,𝜃1) \* Pr(𝜃2\|𝜃1) \* Pr(𝜃1)
+
+2\. Consider the following factored joint distribution:
+
+Pr(𝜃,𝑤,𝜂,𝛼)=Pr(𝛼∣𝑤,𝜂,𝜃)Pr(𝑤∣𝜂,𝜃)Pr(𝜂∣𝜃)Pr(𝜃)
+
+Simplify this equation using the knowledge that 𝜂 and 𝜃 are independent and that 𝑤 and 𝜃 are independent.
+
+Pr(𝜃,𝑤,𝜂,𝛼) = Pr(𝛼∣𝑤,𝜂,𝜃) \* Pr(𝑤∣𝜂) \* Pr(𝜂) \* Pr(𝜃)
