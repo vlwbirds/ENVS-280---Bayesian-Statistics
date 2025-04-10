@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Bayesian Statistics 250401
+# 250401 -Bayesian Statistics
 
 Why learn Bayesian stats?
 
@@ -57,6 +57,285 @@ Why learn Bayesian stats?
         -   Where we include prior information about the system
 
             -   Example: age and redwood height from another study to inform our own questions about the same species in a different location
+
+### Deterministic Models
+
+#### Linear Model
+
+-   g1 (β,X) = β0 + β1X1 + ... + βnXn
+
+-   Domain - Set of all possible input values
+
+-   Range\* - set of possible output values
+
+    -   linear model (-∞, ∞)
+
+    -   but we often want a range of (0 to ∞) in ecology
+
+-   exponential model - (0 to ∞)
+
+    -   g2 (β,X) = e\^(β0 + β1X1 + ... + βnXn)
+
+        -   g2 maps negative values of g1
+
+            -   to (0,1) and non-negative values
+
+            -   to (1, ∞)
+
+        -   log(g2()) = β0 + β1X1 + ... + βnXn
+
+            -   log(g2) is a [link]{.underline} function, and this is called a [log link]{.underline}
+
+    -   What about when your data are from 0 to 1?
+
+        -   e.g. proportions or probabilities
+
+            -   [Inverse logit]{.underline} or [Logistic]{.underline}
+
+                -   [g3 (]{.underline}β,X) = (e\^(β0 + β1X1 + ... + βnXn))/(1+(e\^(β0 + β1X1 + ... + βnXn))
+
+                -   Has a sigmoid shape like an S
+
+            -   Instead of writing all the math our, we often will write
+
+                -   P = g3() = inv.logit(β0 + ... βnXn)
+
+                -   linearize the right hand side of the equation
+
+                -   logit(P) = β0 + ... + βnXn
+
+                    -   logit(P) = log ( (g3()) / (1 + g3()) )
+
+                        -   prove it
+
+                            -   g3() = (e\^x) / (1 + e\^x)
+                            -   log(e\^x) = x
+
+    -   Review power functions on your own
+
+    -   Asymptomatic Functions - e.g. modeling functional response
+
+        -   g5 (m,h,x) = mx / (h+x)
+
+            -   wehre m is maximum or asymptomatic value
+
+            -   and h is [half saturation constant]{.underline}
+
+                -   or m/2
+
+            -   e.g. type 2 functional response
+
+                -   number of prey eaten by a predator per unit time on the y
+
+                -   number of prey on the x
+
+            -   type 3 functional response?
+
+                -   A **Type III functional response** describes a predator’s consumption rate that increases slowly at low prey densities, accelerates at moderate prey densities, and then levels off at high prey densities. This results in a **sigmoid (S-shaped) curve** when plotting prey consumption against prey density.
+
+                    ### Key Features:
+
+                -   **Low Prey Density** → Predators consume fewer prey due to factors like prey hiding, lack of predator search image, or alternative food sources.
+
+                -   **Moderate Prey Density** → Predators recognize and specialize in capturing the prey, increasing consumption (prey switching and improved hunting efficiency).
+
+                -   **High Prey Density** → Consumption rate levels off due to predator saturation (handling time limits how many prey can be consumed).
+
+                -   ![](images/clipboard-1464126632.png)
+
+                    ### Example:
+
+                    Seen in generalist predators that adjust their feeding behavior based on prey availability, such as birds hunting insects or wolves preying on different ungulate species.
+
+                    It contrasts with:
+
+                    -   **Type I** (linear increase until a plateau)
+
+                    -   **Type II** (decelerating increase, asymptotic curve)
+
+# 250403 - Probability Theory
+
+-   Bayesian Analysis treats all unobserved quantities as random variables
+
+    -   parameters
+
+    -   missing data
+
+    -   latent states
+
+    -   behavioral state e.g. stride length of a mammal equalling distance over time
+
+-   Random variable - quantity, call it X, governed by a probability distribution
+
+    -   e.g. it can take on multiple values due to chance
+
+    -   sample space (S) - set of all possible outcomes of a random experiment
+
+        -   e.g. rolling a die, the sample space will include 1,2,3,4,5,6
+
+    -   take an event (A) which represents a set of outcomes in the sample space
+
+        -   e.g. the probability of rolling a 1
+
+        -   ![](images/clipboard-2893563174.png)
+
+        -   Area of A is proportional to the set of outcomes so that it includes
+
+            -   area A/area S = Pr(A)
+
+        -   Now t=lets take a second event (B)
+
+            -   e.g. vote republican or democrat
+
+        -   S could be alltowns in CA and A could be Santa Cruz, B is another town
+
+        -   We ask what is the prob. of B given that A has occured
+
+        -   
+
+## Conditional, Independent, Disjoint Variables
+
+-   [Conditional Probabilities:]{.underline} Pr(A) conditional on event in event B having occurred
+
+    ```         
+        -   this shrinks the sample space and the new area is just where A&B overlap in S
+
+        -   Pr(B\|A) = area shaded by B+A / area shaded by A
+
+        -   Pr(AnB) = (area shaded by B+A / area shaded by S) / (area shaded by A / area shaded by S)
+
+        -   Pr(A\|B) = area shaded by A / area shaded by S
+
+        -   Pr(B\|A) = Pr(AnB) / Pr(A) = Pr(A,B) / Pr(A)
+
+            -   n = intersection of
+
+                -   Pr(A,B) is [joint probability]{.underline} = Pr that both events have occured
+
+        -   If events A&B overlap but no neew information results from knowing either occured, then the events are said to be [independent]{.underline}
+
+            -   e.g. A = live in santa cruz, B = have a red shower curtain
+
+                -   Pr(A\|B) = Pr(A) because the shower curtain has nothing to do with where you live
+
+                -   Pr(A,B) = Pr(A\|B) \* Pr(B) = Pr(A) \* Pr(B)
+
+        -   [Disjointed]{.underline}:
+
+            -   A = live in santa cruz
+
+            -   B = area code 212 (New York City)
+
+            -   When events are disjoint, then there is no overlap.
+
+                -   knowing that event A occurred tells us that event B did not occur
+
+            -   Pr(AuB) = Pr(A) + Pr(B)
+
+                -   u means union
+
+            -   What if we want ot know the probability that one event or the other occurs if they overlap
+
+                -   Pr(AuB) = Pr(A) + Pr(B) - Pr(A,B)
+
+                -   When A is independent of B
+
+                    -   Pr(AuB) = Pr(A) + Pr(B) - Pr(A)/Pr(B)
+
+                -   if events are conditional
+
+                    -   Pr(AuB) = Pr(A) + Pr(B) - Pr(A\|B) \* Pr(B)
+
+                        -   or Pr(B\|A) \* Pr(A)
+
+                -   If events disjoint
+
+                -   Pr(AuB) = Pr(A) + Pr(B)
+    ```
+
+## Law of Total Probabilities
+
+Imagine dividing the entire sample space into non-overlapping events
+
+![](images/clipboard-4253865571.png)
+
+-   Set of events {Bn} n = 1,2,3,...
+
+    -   Pr(A) = ∑ Pr(A\|Bn) \* Pr(Bn)
+
+-   Different ways to visualize the sample space
+
+    -   e\. imagine a 4-sided die, thrown twice
+
+        -   Y = first roll, X = second roll
+
+        -   What is the probability of getting one roll of 4
+
+            -   1 **x x x xx**
+
+            -   2 . . . **x**
+
+            -   3 . . . **x**
+
+            -   4 . . . x
+
+            -   1 2 3 4
+
+            -   or
+
+            -   1 - 1,2,3,**4**
+
+            -   2 - 1,2,3,**4**
+
+            -   3 - 1,2,3,**4**
+
+            -   4 - **1,2,3,4**
+
+        -   So lets say A is is the event of getting at least one roll of 4 and event B is your first roll
+
+            -   Pr(A) = Pr(A\|B1) + Pr(A\|B2) + Pr(A\|B3) + Pr(A\|B4)
+
+            -   Pr(A) = ((1/4) \* (1/4)) + ((1/4) \* (1/4)) + ((1/4) \* (1/4)) + (1 \* (1/4)) = 7/16
+
+                -   fouth one is 1 \* 1/4 because you already got a 4
+
+## Factoring Joint Probabilities
+
+-   Bayesian Networks (directed acyclic graph, DAG)
+
+    -   Reveal the dependencies between random variables
+
+    -   provide a clear diagram for how to factor joint probabilities
+
+    -   random variables are called nodes
+
+        -   nodes at the head are called children
+
+            -   are on the left of the conditioning statement
+
+        -   nodes at the tail are called parents
+
+            -   are on the right of the conditioning statement
+
+        -   B —\> A
+
+            -   Pr(A,B) = Pr(A\|B) \* Pr(B)
+
+        -   B —\> A & C —\> A
+
+            -   Pr(A,B,C) = Pr(A\|B,C) \* Pr(B\|C) \* Pr(C)
+
+        -   any node without an arrow pointing at it is represented unconditionally
+
+            -   e.g. Pr(B)
+
+        -   D -\> C, E -\> C, C -\> B, C -\> A
+
+            -   Pr(A,B,C,D,E) = Pr(A\|C) \* Pr(B\|C) \* Pr(C\|D,E) \* Pr(D) \* Pr(E)
+
+    -   Pr(Z1,Z2, Z3, Zn) = Pr(Zn\|Zn-1,...,Z1) \* Pr(Zn-1\|Zn-2,...,Z1) \* x...x
+
+    -   Pr(Z3\|Z2,Z1) \* Pr(Z2\|Z1) \* Pr(Z1)
 
 ```{r}
 

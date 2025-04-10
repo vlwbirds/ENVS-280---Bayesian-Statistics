@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-# Lab 1 - Deterministic Models and Probability I
+# Lab 1 - Deterministic Models and Probability
 
 ```{r}
 library(boot) # for inv.logit()
@@ -96,4 +96,51 @@ Pr(𝜃,𝑤,𝜂,𝛼)=Pr(𝛼∣𝑤,𝜂,𝜃)Pr(𝑤∣𝜂,𝜃)Pr(𝜂∣�
 
 Simplify this equation using the knowledge that 𝜂 and 𝜃 are independent and that 𝑤 and 𝜃 are independent.
 
-Pr(𝜃,𝑤,𝜂,𝛼) = Pr(𝛼∣𝑤,𝜂,𝜃) \* Pr(𝑤∣𝜂) \* Pr(𝜂) \* Pr(𝜃)
+Pr(𝜃,𝑤,𝜂,𝛼) = Pr(𝛼∣𝑤,𝜂,𝜃) \* Pr(𝑤∣𝜂) \* Pr(𝜂) \* Pr(𝜃) ????
+
+## IV. Converting DAGs to joint distributions
+
+1.  Pr(a,b,c,d,e) = Pr(a\|c,b) \* Pr(c) \* Pr(b\|d,e) \* Pr(d) \* Pr(e)
+2.  Pr(y,z,β1,β2,𝜃d,𝜃p) = Pr(y\|𝜃d,z) \* Pr(𝜃d\|β1,β2) \* Pr(z\|𝜃p) \* Pr(β1) \* Pr(β2) \* Pr(𝜃p)
+3.  Pr(µ,σ,Φ1,Φ2,x,y,z) = Pr(y\|x,z) \* Pr(x\|µ,σ) \* Pr(z\|Φ1,Φ2) \* Pr(µ) \* Pr(σ) \* Pr(Φ1,Φ2)
+4.  Pr(y1,y2,𝛄1,𝛄2,𝛄3,𝜃1,𝜃2) = Pr(y1\|𝜃1,z) \* Pr(y2\|z,𝜃2) \* Pr(𝜃1) \* Pr(𝜃2) \* Pr(z\|𝛄1,𝛄2,𝛄3) \* Pr(𝛄1) \* Pr(𝛄2) \* Pr(𝛄3)
+5.  Pr(A,B,D,E,F,H) = Pr(A\|D,E) \* Pr(B\|H,F) \* Pr(D\|H) \* Pr(H) \* Pr(E) \* Pr(F)
+
+## V. Converting joint distributions to DAGs
+
+Draw Bayesian networks (DAGs) for the joint and conditional
+distributions below.
+
+I.Pr(𝐴,𝐵)=Pr(𝐴∣𝐵)Pr(𝐵)
+
+II.Pr(𝐴,𝐵,𝐶)=Pr(𝐴∣𝐵,𝐶)Pr(𝐵∣𝐶)Pr(𝐶)
+
+III.Pr(𝐴,𝐵,𝐶,𝐷)=Pr(𝐴∣𝐶)Pr(𝐵∣𝐶)Pr(𝐶∣𝐷)Pr(𝐷)
+
+IV.Pr(𝐴,𝐵,𝐶,𝐷,𝐸)=Pr(𝐴∣𝐶)Pr(𝐵∣𝐶)Pr(𝐶∣𝐷,𝐸)Pr(𝐷)Pr(𝐸)
+
+V.Pr(𝐴,𝐵,𝐶,𝐷)=Pr(𝐴∣𝐵,𝐶,𝐷)Pr(𝐵∣𝐶,𝐷)Pr(𝐶∣𝐷)Pr(𝐷)
+
+VI.Pr(𝐴,𝐵,𝐶,𝐷)=Pr(𝐴∣𝐵,𝐶,𝐷)Pr(𝐶∣𝐷)Pr(𝐵)Pr(𝐷)
+
+![](images/IMG_4895.jpg)
+
+## VI. Simplifying
+
+Simplify the expression below, given that 𝑧2
+
+and 𝑧3 are independent random variables.
+
+Pr(𝑧1,𝑧2,𝑧3)=Pr(𝑧1∣𝑧2,𝑧3)Pr(𝑧2∣𝑧3)Pr(𝑧3)
+
+Simplified:
+
+Pr(𝑧1,𝑧2,𝑧3)=Pr(𝑧1\|𝑧2,𝑧3) \* Pr(𝑧2) \* Pr(𝑧3)
+
+## VII. Interpreting and factoring
+
+The probability of an observation 𝑦 depends on a true ecological state of interest, 𝑧, and the parameters in a data model, 𝜽𝑑. The probability of the true state 𝑧 depends on the parameters in an ecological process model, 𝜽𝑝. We know that 𝜽𝑑 and 𝜽𝑝 are independent.
+
+Write out a factored expression for the joint distribution, Pr(𝑦,𝑧,𝜽𝑑,𝜽𝑝). Drawing a Bayesian network will help.
+
+Pr(𝑦,𝑧,𝜽𝑑,𝜽𝑝) = Pr(𝑦\|𝑧,𝜽𝑑) \* Pr(𝑧\|𝜽𝑝) \* Pr(𝜽𝑑) \* Pr(𝜽𝑝)
